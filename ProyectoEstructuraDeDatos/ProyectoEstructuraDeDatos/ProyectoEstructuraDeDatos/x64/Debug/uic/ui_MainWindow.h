@@ -63,13 +63,15 @@ public:
     QRadioButton *rb_stack;
     QRadioButton *rb_queue;
     QRadioButton *rb_listaEnlazada;
+    QLabel *label;
+    QLabel *label_2;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindowClass)
     {
         if (MainWindowClass->objectName().isEmpty())
             MainWindowClass->setObjectName("MainWindowClass");
-        MainWindowClass->resize(798, 536);
+        MainWindowClass->resize(799, 535);
         QPalette palette;
         QBrush brush(QColor(0, 0, 0, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -97,7 +99,7 @@ public:
         QBrush brush7(QColor(165, 221, 227, 255));
         brush7.setStyle(Qt::SolidPattern);
         palette.setBrush(QPalette::Active, QPalette::Base, brush7);
-        QBrush brush8(QColor(225, 250, 250, 255));
+        QBrush brush8(QColor(197, 255, 255, 255));
         brush8.setStyle(Qt::SolidPattern);
         palette.setBrush(QPalette::Active, QPalette::Window, brush8);
         palette.setBrush(QPalette::Active, QPalette::Shadow, brush);
@@ -416,12 +418,28 @@ public:
         rb_stack = new QRadioButton(centralWidget);
         rb_stack->setObjectName("rb_stack");
         rb_stack->setGeometry(QRect(20, 490, 89, 20));
+        rb_stack->setCursor(QCursor(Qt::PointingHandCursor));
         rb_queue = new QRadioButton(centralWidget);
         rb_queue->setObjectName("rb_queue");
         rb_queue->setGeometry(QRect(100, 490, 89, 20));
+        rb_queue->setCursor(QCursor(Qt::PointingHandCursor));
         rb_listaEnlazada = new QRadioButton(centralWidget);
         rb_listaEnlazada->setObjectName("rb_listaEnlazada");
         rb_listaEnlazada->setGeometry(QRect(180, 490, 89, 20));
+        rb_listaEnlazada->setCursor(QCursor(Qt::PointingHandCursor));
+        label = new QLabel(centralWidget);
+        label->setObjectName("label");
+        label->setGeometry(QRect(20, 20, 151, 16));
+        QPalette palette2;
+        palette2.setBrush(QPalette::Active, QPalette::Window, brush6);
+        palette2.setBrush(QPalette::Inactive, QPalette::Window, brush11);
+        palette2.setBrush(QPalette::Disabled, QPalette::Window, brush6);
+        label->setPalette(palette2);
+        label->setFont(font3);
+        label_2 = new QLabel(centralWidget);
+        label_2->setObjectName("label_2");
+        label_2->setGeometry(QRect(140, 20, 101, 16));
+        label_2->setFont(font3);
         MainWindowClass->setCentralWidget(centralWidget);
         statusBar = new QStatusBar(MainWindowClass);
         statusBar->setObjectName("statusBar");
@@ -455,6 +473,8 @@ public:
         rb_stack->setText(QCoreApplication::translate("MainWindowClass", "Stack", nullptr));
         rb_queue->setText(QCoreApplication::translate("MainWindowClass", "Queue", nullptr));
         rb_listaEnlazada->setText(QCoreApplication::translate("MainWindowClass", "Lista", nullptr));
+        label->setText(QCoreApplication::translate("MainWindowClass", "Header = Blue", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindowClass", "Nullptr = Red", nullptr));
     } // retranslateUi
 
 };

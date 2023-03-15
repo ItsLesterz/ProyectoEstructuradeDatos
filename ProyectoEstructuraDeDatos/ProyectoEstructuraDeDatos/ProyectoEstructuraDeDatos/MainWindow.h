@@ -1,5 +1,4 @@
 #pragma once
-
 #include <QtWidgets/QMainWindow>
 #include "ui_MainWindow.h"
 
@@ -8,7 +7,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
     void hideMenu();
     void showMenu();
@@ -26,7 +25,7 @@ private slots:
     void on_rb_listaEnlazada_clicked();
     void on_rb_queue_clicked();
     void on_rb_stack_clicked();
-    
+
 private:
     Ui::MainWindowClass ui;
 };

@@ -1,6 +1,15 @@
-﻿  List.cpp
-  MainWindow.cpp
-  main.cpp
-C:\Users\leste\source\repos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\List.cpp(55): warning C4715: 'List::valueAt': not all control paths return a value
-  moc_MainWindow.cpp
-  ProyectoEstructuraDeDatos.vcxproj -> C:\Users\leste\source\repos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\x64\Debug\ProyectoEstructuraDeDatos.exe
+﻿  MainWindow.cpp
+C:\Users\leste\source\repos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\MainWindow.cpp(17,5): error C2143: syntax error: missing ';' before '*'
+C:\Users\leste\source\repos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\MainWindow.cpp(17,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\leste\source\repos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\MainWindow.cpp(17,12): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\leste\source\repos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\MainWindow.cpp(18,6): error C2143: syntax error: missing ';' before '*'
+C:\Users\leste\source\repos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\MainWindow.cpp(18,6): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\leste\source\repos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\MainWindow.cpp(18,13): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\leste\source\repos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\MainWindow.cpp(19,6): error C2143: syntax error: missing ';' before '*'
+C:\Users\leste\source\repos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\MainWindow.cpp(19,6): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\leste\source\repos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\MainWindow.cpp(19,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\leste\source\repos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\MainWindow.cpp(19,20): error C2061: syntax error: identifier 'Stack'
+C:\Users\leste\source\repos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\MainWindow.cpp(418,21): error C2061: syntax error: identifier 'List'
+C:\Users\leste\source\repos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\MainWindow.cpp(424,21): error C2061: syntax error: identifier 'Queue'
+C:\Users\leste\source\repos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\MainWindow.cpp(430,21): error C2061: syntax error: identifier 'Stack'
+C:\Users\leste\source\repos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\ProyectoEstructuraDeDatos\MainWindow.cpp(431,21): error C2061: syntax error: identifier 'Queue'
