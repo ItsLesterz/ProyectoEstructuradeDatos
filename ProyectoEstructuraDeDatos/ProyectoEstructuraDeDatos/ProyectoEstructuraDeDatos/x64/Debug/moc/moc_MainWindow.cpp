@@ -29,47 +29,47 @@ namespace {
 struct qt_meta_stringdata_MainWindow_t {
     uint offsetsAndSizes[24];
     char stringdata0[11];
-    char stringdata1[24];
+    char stringdata1[25];
     char stringdata2[1];
     char stringdata3[28];
-    char stringdata4[29];
+    char stringdata4[31];
     char stringdata5[30];
-    char stringdata6[24];
-    char stringdata7[23];
-    char stringdata8[25];
-    char stringdata9[28];
-    char stringdata10[20];
-    char stringdata11[20];
+    char stringdata6[19];
+    char stringdata7[18];
+    char stringdata8[20];
+    char stringdata9[25];
+    char stringdata10[17];
+    char stringdata11[17];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_MainWindow_t::offsetsAndSizes) + ofs), len 
 Q_CONSTINIT static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
         QT_MOC_LITERAL(0, 10),  // "MainWindow"
-        QT_MOC_LITERAL(11, 23),  // "on_butt_toolbar_clicked"
-        QT_MOC_LITERAL(35, 0),  // ""
-        QT_MOC_LITERAL(36, 27),  // "on_butt_crear_lista_clicked"
-        QT_MOC_LITERAL(64, 28),  // "on_butt_editar_lista_clicked"
-        QT_MOC_LITERAL(93, 29),  // "on_butt_guardar_lista_clicked"
-        QT_MOC_LITERAL(123, 23),  // "on_butt_agregar_clicked"
-        QT_MOC_LITERAL(147, 22),  // "on_butt_buscar_clicked"
-        QT_MOC_LITERAL(170, 24),  // "on_butt_eliminar_clicked"
-        QT_MOC_LITERAL(195, 27),  // "on_rb_listaEnlazada_clicked"
-        QT_MOC_LITERAL(223, 19),  // "on_rb_queue_clicked"
-        QT_MOC_LITERAL(243, 19)   // "on_rb_stack_clicked"
+        QT_MOC_LITERAL(11, 24),  // "on_toolbarbutton_clicked"
+        QT_MOC_LITERAL(36, 0),  // ""
+        QT_MOC_LITERAL(37, 27),  // "on_crearlistabutton_clicked"
+        QT_MOC_LITERAL(65, 30),  // "on_editararchivobutton_clicked"
+        QT_MOC_LITERAL(96, 29),  // "on_guardarlistabutton_clicked"
+        QT_MOC_LITERAL(126, 18),  // "on_agregar_clicked"
+        QT_MOC_LITERAL(145, 17),  // "on_buscar_clicked"
+        QT_MOC_LITERAL(163, 19),  // "on_eliminar_clicked"
+        QT_MOC_LITERAL(183, 24),  // "on_listaEnlazada_clicked"
+        QT_MOC_LITERAL(208, 16),  // "on_queue_clicked"
+        QT_MOC_LITERAL(225, 16)   // "on_stack_clicked"
     },
     "MainWindow",
-    "on_butt_toolbar_clicked",
+    "on_toolbarbutton_clicked",
     "",
-    "on_butt_crear_lista_clicked",
-    "on_butt_editar_lista_clicked",
-    "on_butt_guardar_lista_clicked",
-    "on_butt_agregar_clicked",
-    "on_butt_buscar_clicked",
-    "on_butt_eliminar_clicked",
-    "on_rb_listaEnlazada_clicked",
-    "on_rb_queue_clicked",
-    "on_rb_stack_clicked"
+    "on_crearlistabutton_clicked",
+    "on_editararchivobutton_clicked",
+    "on_guardarlistabutton_clicked",
+    "on_agregar_clicked",
+    "on_buscar_clicked",
+    "on_eliminar_clicked",
+    "on_listaEnlazada_clicked",
+    "on_queue_clicked",
+    "on_stack_clicked"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -123,25 +123,25 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_MainWindow_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>,
-        // method 'on_butt_toolbar_clicked'
+        // method 'on_toolbarbutton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_butt_crear_lista_clicked'
+        // method 'on_crearlistabutton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_butt_editar_lista_clicked'
+        // method 'on_editararchivobutton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_butt_guardar_lista_clicked'
+        // method 'on_guardarlistabutton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_butt_agregar_clicked'
+        // method 'on_agregar_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_butt_buscar_clicked'
+        // method 'on_buscar_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_butt_eliminar_clicked'
+        // method 'on_eliminar_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_rb_listaEnlazada_clicked'
+        // method 'on_listaEnlazada_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_rb_queue_clicked'
+        // method 'on_queue_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_rb_stack_clicked'
+        // method 'on_stack_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -153,16 +153,16 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWindow *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->on_butt_toolbar_clicked(); break;
-        case 1: _t->on_butt_crear_lista_clicked(); break;
-        case 2: _t->on_butt_editar_lista_clicked(); break;
-        case 3: _t->on_butt_guardar_lista_clicked(); break;
-        case 4: _t->on_butt_agregar_clicked(); break;
-        case 5: _t->on_butt_buscar_clicked(); break;
-        case 6: _t->on_butt_eliminar_clicked(); break;
-        case 7: _t->on_rb_listaEnlazada_clicked(); break;
-        case 8: _t->on_rb_queue_clicked(); break;
-        case 9: _t->on_rb_stack_clicked(); break;
+        case 0: _t->on_toolbarbutton_clicked(); break;
+        case 1: _t->on_crearlistabutton_clicked(); break;
+        case 2: _t->on_editararchivobutton_clicked(); break;
+        case 3: _t->on_guardarlistabutton_clicked(); break;
+        case 4: _t->on_agregar_clicked(); break;
+        case 5: _t->on_buscar_clicked(); break;
+        case 6: _t->on_eliminar_clicked(); break;
+        case 7: _t->on_listaEnlazada_clicked(); break;
+        case 8: _t->on_queue_clicked(); break;
+        case 9: _t->on_stack_clicked(); break;
         default: ;
         }
     }

@@ -1,4 +1,5 @@
 #pragma once
+
 #include <QtWidgets/QMainWindow>
 #include "ui_MainWindow.h"
 
@@ -7,7 +8,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget* parent = nullptr);
+    MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void hideMenu();
     void showMenu();
@@ -15,17 +16,17 @@ public:
     void clearGraphView(QLayout*);
 
 private slots:
-    void on_butt_toolbar_clicked();
-    void on_butt_crear_lista_clicked();
-    void on_butt_editar_lista_clicked();
-    void on_butt_guardar_lista_clicked();
-    void on_butt_agregar_clicked();
-    void on_butt_buscar_clicked();
-    void on_butt_eliminar_clicked();
-    void on_rb_listaEnlazada_clicked();
-    void on_rb_queue_clicked();
-    void on_rb_stack_clicked();
-
+    void on_toolbarbutton_clicked();
+    void on_crearlistabutton_clicked();
+    void on_editararchivobutton_clicked();
+    void on_guardarlistabutton_clicked();
+    void on_agregar_clicked();
+    void on_buscar_clicked();
+    void on_eliminar_clicked();
+    void on_listaEnlazada_clicked();
+    void on_queue_clicked();
+    void on_stack_clicked();
+    
 private:
     Ui::MainWindowClass ui;
 };

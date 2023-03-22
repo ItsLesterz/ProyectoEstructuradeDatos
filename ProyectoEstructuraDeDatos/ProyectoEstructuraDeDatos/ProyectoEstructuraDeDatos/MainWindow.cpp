@@ -3,12 +3,13 @@
 #include <QMessageBox>
 #include <QInputDialog>
 #include <QDir>
+#include "List.h"
+#include "Queue.h"
+#include "Stack.h"
 #include <sstream>
 #include <iostream>
 #include <fstream>
-
-
-//PARTE LOGICA
+#include <QFileDialog>
 using namespace std;
 enum ESTRUCTURA
 {
@@ -18,401 +19,34 @@ List* lista;
 Queue* queue;
 Stack* stack = new Stack();
 int estructura = 0;
-//ESTRUCTURA DE NODOS
-class Node
-{
-public:
-    Node* next;
-    int value;
-    Node(int);
-    ~Node();
-};
-
-Node::Node(int newValue) {
-    this->value = newValue;
-    this->next = nullptr;
-}
-
-Node::~Node() {
-
-}
-
-//ESTRUCTURA DE LISTA ENLAZADA
-class List
-{
-private:
-    Node* first;
-    Ui::MainWindowClass ui;
-public:
-    List();
-    ~List();
-    void insertNode(int);
-    void printList();
-    int size();
-    int valueAt(int index);
-    bool contains(int valor);
-    bool deleteNode(int valueToDelete);
-};
-
-List::List() {
-    this->first = nullptr;
-}
-
-List::~List() {}
-
-void List::insertNode(int newValue) {
-    Node* newNode = new Node(newValue);
-    if (this->first == nullptr) {
-        this->first = newNode;
-        return;
-    }
-    else {
-        Node* iteratorNode = this->first;
-        while (iteratorNode->next != nullptr) {
-            iteratorNode = iteratorNode->next;
-        }
-        iteratorNode->next = newNode;
-    }
-}
-
-void List::printList() {
-    Node* iteratorNode = this->first;
-    while (iteratorNode != nullptr) {
-        ui.combo_eliminar->addItem("hola");
-        iteratorNode = iteratorNode->next;
-    }
-}
-
-int List::size() {
-    int i = 0;
-    Node* iteratorNode = this->first;
-    while (iteratorNode != nullptr) {
-        i++;
-        iteratorNode = iteratorNode->next;
-    }
-    return i;
-}
-
-int List::valueAt(int index) {
-    Node* iteratorNode = this->first;
-    for (int i = 0; i <= index; i++) {
-        if (i == index) {
-            return iteratorNode->value;
-        }
-        else {
-            iteratorNode = iteratorNode->next;
-        }
-    }
-}
-
-bool List::contains(int value) {
-    bool exists = false;
-    if (this->first->value == value) {
-        exists = true;
-    }
-    Node* iteratorNode = this->first;
-    while (iteratorNode->next != nullptr) {
-        if (iteratorNode->next->value == value) {
-            exists = true;
-            break;
-        }
-        iteratorNode = iteratorNode->next;
-    }
-    if (exists) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-bool List::deleteNode(int valueToDelete)
-{
-    // caso base, si es el primer nodo de la lista o el unico que queda en la lista
-    bool isDeleteComplete = false;
-    if (this->first->value == valueToDelete) {
-        this->first = this->first->next;
-        isDeleteComplete = true;
-    }
-    else {
-        // case 2: borrar cualquier elemento de enmedio de la lista
-        Node* iteratorNode = this->first;
-        while (iteratorNode->next != nullptr) {
-            if (iteratorNode->next->value == valueToDelete) {
-                iteratorNode->next = iteratorNode->next->next;
-                isDeleteComplete = true;
-                break;
-            }
-            iteratorNode = iteratorNode->next;
-        }
-    }
-
-    if (isDeleteComplete) {
-        cout << "true\n";
-    }
-    else {
-        cout << "false\n";
-    }
-    return isDeleteComplete;
-}
-
-//ESTRUCTURA DE QUEUE
-class Queue
-{
-private:
-    Node* tail;
-    Node* head;
-    int size;
-    void incrementSize();
-    void decrementSize();
-public:
-    Queue();
-    ~Queue();
-    void enqueue(int);
-    int dequeue();
-    int getSize();
-    int print(int);
-    bool contains(int);
-};
-
-Queue::Queue() {
-    this->size = 0;
-    this->head = nullptr;
-    this->tail = nullptr;
-}
-
-Queue::~Queue() {
-
-}
-
-void Queue::enqueue(int newValue) {
-    this->incrementSize();
-    Node* newNode = new Node(newValue);
-    // caso base : no hay elementos en la cola
-    if (this->tail == nullptr) {
-        this->tail = newNode;
-        return;
-    }
-    // caso 2 : si hay elementos en la lista
-    newNode->next = this->tail;
-    this->tail = newNode;
-}
-
-int Queue::dequeue()
-{
-    if (this->getSize() == 0) {
-        return 0;
-    }
-    else if (this->getSize() == 1) {
-        int valueToReturn = this->tail->value;
-        this->tail = nullptr;
-        this->head = nullptr;
-        this->decrementSize();
-        return valueToReturn;
-    }
-
-    Node* iteratorNode = this->tail;
-    int valueToReturn = 0;
-    while (iteratorNode->next != nullptr) {
-        // avanzar el apuntador
-        if (iteratorNode->next->next == nullptr) {
-            // estoy en el penultimo
-            valueToReturn = iteratorNode->next->value;
-            iteratorNode->next = iteratorNode->next->next;
-            // iteratorNode->next = nullptr;
-            // linea 111 y 112 son lo mismo
-
-            this->head = iteratorNode;
-            break;
-        }
-        iteratorNode = iteratorNode->next;
-    }
-    this->decrementSize();
-    return valueToReturn;
-}
-
-void Queue::incrementSize() {
-    this->size = this->size + 1;
-}
-void Queue::decrementSize() {
-    this->size = this->size - 1;
-}
-int Queue::getSize()
-{
-    return this->size;
-}
-
-int Queue::print(int index)
-{
-    Node* iteratorNode = this->tail;
-    for (int i = 0; i <= index; i++) {
-        if (i == index) {
-            return iteratorNode->value;
-        }
-        else {
-            iteratorNode = iteratorNode->next;
-        }
-    }
-}
-
-bool Queue::contains(int value) {
-    bool exists = false;
-    if (this->tail->value == value) {
-        exists = true;
-    }
-    Node* iteratorNode = this->tail;
-    while (iteratorNode->next != nullptr) {
-        if (iteratorNode->next->value == value) {
-            exists = true;
-            break;
-        }
-        iteratorNode = iteratorNode->next;
-    }
-    if (exists)
-        return true;
-    else
-        return false;
-}
-
-//ESTRUCUTA DE STACK
-class Stack
-{
-private:
-    Node* head;
-    Node* tail;
-    int size;
-    void incrementSize();
-    void decrementSize();
-public:
-    Stack();
-    ~Stack();
-    void push(int);
-    int pop();
-    int getSize();
-    int print(int);
-    bool contains(int);
-};
-
-Stack::Stack() {
-    this->size = 0;
-    this->head = nullptr;
-    this->tail = nullptr;
-}
-
-Stack::~Stack() {
-
-}
-
-void Stack::push(int newValue) {
-    this->incrementSize();
-    Node* newNode = new Node(newValue);
-    // caso base : no hay elementos en la cola
-    if (this->tail == nullptr) {
-        this->tail = newNode;
-        return;
-    }
-    // caso 2 : si hay elementos en la lista
-    newNode->next = this->tail;
-    this->tail = newNode;
-}
-
-int Stack::pop() {
-    if (this->size == 0) {
-        return 0;
-    }
-    if (this->size == 1) {
-        int valuetoReturn = this->tail->value;
-        this->tail = nullptr;
-        this->head = nullptr;
-        this->decrementSize();
-        return valuetoReturn;
-    }
-    int valueToReturn = tail->value;;
-    this->tail = this->tail->next;
-    this->decrementSize();
-    return valueToReturn;
-}
-
-int Stack::print(int index) {
-    Node* iteratorNode = this->tail;
-    for (int i = 0; i <= index; i++) {
-        if (i == index) {
-            return iteratorNode->value;
-        }
-        else {
-            iteratorNode = iteratorNode->next;
-        }
-    }
-}
-
-int Stack::getSize() {
-    return this->size;
-}
-
-void Stack::incrementSize() {
-    this->size = this->size + 1;
-}
-
-void Stack::decrementSize() {
-    this->size = this->size - 1;
-}
-
-
-// PARTE VISUAL
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
-    //ui.rb_listaEnlazada->setChecked(true);
+    ui.rb_listaEnlazada->setChecked(true);
     hideMenu();
 }
 
 MainWindow::~MainWindow()
 {}
 
-void MainWindow::on_rb_listaEnlazada_clicked() {
-    estructura = LISTA;
-    //ui.label_titulo->setText("Listas Enlazadas");
-    ui.butt_toolbar->setText("Toolbar");
-    ui.frame_opciones->hide();
-    hideMenu();
-}
 
-void MainWindow::on_rb_queue_clicked() {
-    estructura = QUEUE;
-    //ui.label_titulo->setText("Queue");
-    ui.butt_toolbar->setText("Toolbar");
-    ui.frame_opciones->hide();
-    hideMenu();
-}
-
-void MainWindow::on_rb_stack_clicked() {
-    estructura = STACK;
-    //ui.label_titulo->setText("Stack");
-    ui.butt_toolbar->setText("Toolbar");
-    ui.frame_opciones->hide();
-    hideMenu();
-}
-
-void MainWindow::on_butt_toolbar_clicked() {
+void MainWindow::on_toolbarbutton_clicked() {
     switch (estructura) {
     case LISTA:
-        ui.butt_toolbar->setText("Lista");
         ui.frame_opciones->show();
         break;
     case QUEUE:
-        ui.butt_toolbar->setText("Queue");
         ui.frame_opciones->show();
         break;
-    case STACK: 
-        ui.butt_toolbar->setText("Stack");
+    case STACK:
         ui.frame_opciones->show();
         break;
     }
 }
 
-void MainWindow::on_butt_crear_lista_clicked() {
+void MainWindow::on_crearlistabutton_clicked() {
     switch (estructura) {
     case LISTA:
         lista = new List();
@@ -435,11 +69,45 @@ void MainWindow::on_butt_crear_lista_clicked() {
     }
 }
 
-void MainWindow::on_butt_editar_lista_clicked() {
+void MainWindow::on_editararchivobutton_clicked() {
     ui.butt_toolbar->setText("Toolbar");
+    string archivo;
+    archivo=QFileDialog::getOpenFileName(this, tr("Abrir Archivo"), "C://", "Archivo CSV (*.csv)").toStdString();
+    ui.label_archivo->setText("Nombre de Archivo: " + QString::fromStdString(archivo));
+    ifstream inFile(archivo);
+    string line;
+    if (inFile.is_open()) {
+        while (getline(inFile, line)) {
+			stringstream s(line);
+			int num;
+            if ((s >> num).fail() || !(s >> std::ws).eof()) {
+				QMessageBox::warning(this, tr("Listas Enlazadas"), tr("Dato invalido!"));
+			}
+            else {
+                switch (estructura) {
+				case LISTA:
+					lista->insertNode(num);
+					break;
+				case QUEUE:
+					queue->enqueue(num);
+					break;
+				case STACK:
+					stack->push(num);
+					break;
+				}
+			}
+		}
+		inFile.close();
+		refreshList();
+	}
+    else {
+		QMessageBox::warning(this, tr("Listas Enlazadas"), tr("Archivo no encontrado!"));
+	}
+
+
 }
 
-void MainWindow::on_butt_guardar_lista_clicked() {
+void MainWindow::on_guardarlistabutton_clicked() {
     bool ok;
     ui.butt_toolbar->setText("Toolbar");
     hideMenu();
@@ -457,20 +125,21 @@ void MainWindow::on_butt_guardar_lista_clicked() {
     }    
 }
 
-void MainWindow::on_butt_agregar_clicked() {
+void MainWindow::on_agregar_clicked() {
     QVBoxLayout* layout = new QVBoxLayout(this);
     string str_input = ui.txt_insertar->text().toStdString();
     cin >> str_input;
     stringstream s(str_input);
     int num_input;
     if ((s >> num_input).fail() || !(s >> std::ws).eof()) {
-        QMessageBox::warning(this, tr("Listas Enlazadas"), tr("Ingrese un Dato!"));
+        QMessageBox::warning(this, tr("Listas Enlazadas"), tr("Dato invalido!"));
     }
     else {
         switch (estructura) {
         case LISTA:
             num_input = stoi(str_input);
             lista->insertNode(num_input);
+         
             break;
         case QUEUE:
             num_input = stoi(str_input);
@@ -479,6 +148,7 @@ void MainWindow::on_butt_agregar_clicked() {
         case STACK:
             num_input = stoi(str_input);
             stack->push(num_input);
+          
             break;
         }
     }
@@ -486,36 +156,36 @@ void MainWindow::on_butt_agregar_clicked() {
     ui.txt_insertar->clear();
 }
 
-void MainWindow::on_butt_buscar_clicked() {
+void MainWindow::on_buscar_clicked() {
     string str_valor = ui.txt_buscar->text().toStdString();
     cin >> str_valor;
     stringstream s(str_valor);
     int valor;
     if ((s >> valor).fail() || !(s >> std::ws).eof()) {
-        QMessageBox::warning(this, tr("Listas Enlazadas"), tr("Ingrese un Dato!"));
+        QMessageBox::warning(this, tr("Listas Enlazadas"), tr("Dato invalido!"));
     }
     else {
         valor = stoi(str_valor);
         switch (estructura) {
         case LISTA:
             if (lista->size() == 0)
-                QMessageBox::warning(this, tr("Buscar"), tr("Lista Vacia!!"));
+                QMessageBox::warning(this, tr("Buscar"), tr("La lista esta vacia!"));
             else {
                 bool exists = lista->contains(valor);
                 if (exists)
-                    QMessageBox::information(this, tr("Buscar"), tr("Se encontro el valor correctamente!"));
+                    QMessageBox::information(this, tr("Buscar"), tr("Se encontro el valor ingresado!"));
                 else
                     QMessageBox::warning(this, tr("Buscar"), tr("No se pudo encontrar el valor ingresado!"));
             }
             break;
         case QUEUE:
             if (queue->getSize() == 0) {
-                QMessageBox::warning(this, tr("Buscar"), tr("Lista Vacia!!"));
+                QMessageBox::warning(this, tr("Buscar"), tr("La lista esta vacia!"));
             }
             else {
                 bool exists = queue->contains(valor);
                 if (exists)
-                    QMessageBox::information(this, tr("Buscar"), tr("Se encontro el valor correctamente!"));
+                    QMessageBox::information(this, tr("Buscar"), tr("Se encontro el valor ingresado!"));
                 else
                     QMessageBox::warning(this, tr("Buscar"), tr("No se pudo encontrar el valor ingresado!"));
             }
@@ -525,18 +195,18 @@ void MainWindow::on_butt_buscar_clicked() {
     ui.txt_buscar->clear();
 }
 
-void MainWindow::on_butt_eliminar_clicked() {
+void MainWindow::on_eliminar_clicked() {
     switch (estructura) {
     case LISTA:
         if (ui.combo_eliminar->count() == 0) {
-            QMessageBox::warning(this, tr("Eliminar"), tr("Lista Vacia!"));
+            QMessageBox::warning(this, tr("Eliminar"), tr("La lista esta vacia!"));
         }
         else {
             int value = stoi(ui.combo_eliminar->currentText().toStdString());
             bool exists = lista->deleteNode(value);
             if (exists) {
                 refreshList();
-                QMessageBox::information(this, tr("Eliminar"), tr("Se elimino correctamente!"));
+                QMessageBox::information(this, tr("Eliminar"), tr("Se elimino el elemento seleccionado!"));
             }
             else
                 QMessageBox::warning(this, tr("Eliminar"), tr("No se pudo encontrar el elemento seleccionado!"));
@@ -544,7 +214,7 @@ void MainWindow::on_butt_eliminar_clicked() {
         break;
     case QUEUE:
         if (queue->getSize() == 0) {
-            QMessageBox::warning(this, tr("Dequeue"), tr("Lista Vacia!"));
+            QMessageBox::warning(this, tr("Dequeue"), tr("La lista esta vacia!"));
         }
         else {
             int valor = queue->dequeue();
@@ -554,7 +224,7 @@ void MainWindow::on_butt_eliminar_clicked() {
         break;
     case STACK:
         if (stack->getSize() == 0) {
-            QMessageBox::warning(this, tr("Pop"), tr("Lista Vacia!"));
+            QMessageBox::warning(this, tr("Pop"), tr("La lista esta vacia!"));
         }
         else {
             int valor = stack->pop();
@@ -566,6 +236,26 @@ void MainWindow::on_butt_eliminar_clicked() {
     
 }
 
+void MainWindow::on_listaEnlazada_clicked() {
+    estructura = LISTA;
+    ui.butt_toolbar->setText("Toolbar");
+    ui.frame_opciones->hide();
+    hideMenu();
+}
+
+void MainWindow::on_queue_clicked() {
+    estructura = QUEUE;
+    ui.butt_toolbar->setText("Toolbar");
+    ui.frame_opciones->hide();
+    hideMenu();
+}
+
+void MainWindow::on_stack_clicked() {
+    estructura = STACK;
+    ui.butt_toolbar->setText("Toolbar");
+    ui.frame_opciones->hide();
+    hideMenu();
+}
 
 void MainWindow::hideMenu() {
     ui.frame_opciones->hide();
@@ -621,10 +311,9 @@ void MainWindow::showMenu() {
         break;
     }
 }
-
 void MainWindow::refreshList() {
     QPixmap pixmap("pointer.png");
-    ui.combo_eliminar->clear();    
+    ui.combo_eliminar->clear();
     this->clearGraphView(ui.layout);
     switch (estructura)
     {
@@ -654,7 +343,7 @@ void MainWindow::refreshList() {
             pointer->setAlignment(Qt::AlignCenter);
             QLabel* label = new QLabel(QString::number(queue->print(i)));
             label->setAlignment(Qt::AlignCenter);
-            if (i == queue->getSize() - 1) 
+            if (i == queue->getSize() - 1)
                 label->setStyleSheet("QLabel { background-color : blue; color: white; border-radius: 5px; min-height : 40px; max-height : 40px; font-size : 15px;}");
             else
                 label->setStyleSheet("QLabel { background-color : gray; color : white; border-radius: 5px; min-height : 40px; max-height : 40px; font-size : 15px;}");
@@ -672,9 +361,9 @@ void MainWindow::refreshList() {
             QLabel* label = new QLabel(QString::number(stack->print(i)));
             label->setAlignment(Qt::AlignCenter);
             if (i == stack->getSize() - 1)
-                label->setStyleSheet("QLabel { background-color : blue; color : white; min-height : 40px; max-height : 40px; font-size : 15px;}");
+                label->setStyleSheet("QLabel { background-color : blue; color : white; min-height : 5px; max-height : 40px; font-size : 15px;}");
             else
-                label->setStyleSheet("QLabel { background-color : gray; color : white; min-height : 40px; max-height : 40px; font-size : 15px;}");
+                label->setStyleSheet("QLabel { background-color : gray; color : white; min-height : 5px; max-height : 40px; font-size : 15px;}");
             ui.layout->insertWidget(0, pointer);
             ui.layout->insertWidget(0, label);
         }
@@ -682,10 +371,11 @@ void MainWindow::refreshList() {
     }
     QLabel* null_node = new QLabel("NULLPTR");
     null_node->setAlignment(Qt::AlignCenter);
-    null_node->setStyleSheet("QLabel { background-color : red; color : white; min-height : 40px; max-height : 40px; font-size : 15px;}");
+    null_node->setStyleSheet("QLabel { background-color : red; color : white; min-height : 5px; max-height : 40px; font-size : 15px;}");
     ui.layout->addWidget(null_node);
     ui.scroll_content->setLayout(ui.layout);
 }
+
 
 void MainWindow::clearGraphView(QLayout* layout) {
     if (layout == NULL)
