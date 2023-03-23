@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="ProyectoEstrcutura1">
+    <file>olimpia.jpg</file>
+    <file>olimpia.jpg</file>
+    <file>attack.jpg</file>
+    <file>olimpia_logo.png</file>
+  </qresource>
+</RCC>
